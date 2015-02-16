@@ -1,0 +1,5 @@
+services:
+    colinfrei.form.type.bitfield:
+        class: ColinFrei\BitFieldTypeBundle\Form\Type\BitfieldType
+        tags:
+            - {name: form.type, alias: bitfield}

@@ -4,20 +4,13 @@ namespace ColinFrei\BitFieldTypeBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use ColinFrei\BitFieldTypeBundle\Form\DataTransformer\BitfieldToArrayTransformer;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class BitfieldType extends AbstractType
 {
-    public function getDefaultOptions(array $options)
-    {
-        return array(
-            'expanded' => true,
-            'multiple' => true,
-        );
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->addModelTransformer(new BitfieldToArrayTransformer());
@@ -25,11 +18,31 @@ class BitfieldType extends AbstractType
 
     public function getParent()
     {
-        return new ChoiceType();
+        return 'choice';
     }
 
     public function getName()
     {
         return 'bitfield';
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults(
+            array(
+                'expanded' => true,
+                'multiple' => true
+            )
+        );
+    }
+
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(
+            array(
+                'expanded' => true,
+                'multiple' => true
+            )
+        );
     }
 }
