@@ -8,17 +8,6 @@ class BitfieldToArrayTransformer implements DataTransformerInterface
 {
     const MAX_BITFIELDS_32 = 0x7FFFFFFF;
 
-    public function reverseTransform($array)
-    {
-        $bits = 0;
-        if ($array != null) {
-            foreach ($array AS $value) {
-                $bits += $value;
-            }
-        }
-        return $bits;
-    }
-
     public function transform($bits)
     {
         $validBits = array();
@@ -34,5 +23,16 @@ class BitfieldToArrayTransformer implements DataTransformerInterface
         }
 
         return $validBits;
+    }
+
+    public function reverseTransform($array)
+    {
+        $bits = 0;
+        if ($array != null) {
+            foreach ($array AS $value) {
+                $bits += $value;
+            }
+        }
+        return $bits;
     }
 }
