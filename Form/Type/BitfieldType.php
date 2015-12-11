@@ -7,7 +7,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use ColinFrei\BitFieldTypeBundle\Form\DataTransformer\BitfieldToArrayTransformer;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class BitfieldType extends AbstractType
 {
@@ -27,16 +26,6 @@ class BitfieldType extends AbstractType
     }
 
     public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults(
-            array(
-                'expanded' => true,
-                'multiple' => true
-            )
-        );
-    }
-
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(
             array(
